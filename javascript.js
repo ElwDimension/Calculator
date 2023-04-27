@@ -2,6 +2,38 @@ let firstNum, operator, secondNum, result;
 let numbers=['',''];
 let i=0;
 
+const displayBox=document.querySelector('#display');
+
+const numBtns=document.querySelectorAll('.num');
+numBtns.forEach((numBtn) => {
+  numBtn.addEventListener('click',function(){ numbers[i]+=numBtn.textContent;});
+});
+
+const addBtn=document.querySelector('#add');
+addBtn.addEventListener('click',function(){ operator="+"; i=1; });
+
+const subBtn=document.querySelector('#subtract');
+subBtn.addEventListener('click',function(){ operator="-"; i=1;});
+
+const multiBtn=document.querySelector('#multiply');
+multiBtn.addEventListener('click',function(){ operator="*"; i=1; });
+
+const divBtn=document.querySelector('#divide');
+divBtn.addEventListener('click',function(){ operator="/"; i=1; });
+
+const equalBtn=document.querySelector('#equals');
+equalBtn.addEventListener('click',function(){ 
+  firstNum = Number(numbers[0]);
+  secondNum = Number(numbers[1]);
+  result = operate(firstNum,operator,secondNum);
+  displayBox.textContent=result;
+  i=0;
+  firstNum='';secondNum='';
+});
+
+
+
+
 const add = function(x,y) {
     return x+y;	
   };
@@ -24,26 +56,20 @@ const add = function(x,y) {
   }
 
   const operate=function(x,operator,y){
-    console.log(x+' '+operator+' '+y);
     switch(operator){
       case '+':
-        console.log("adding");
         return add(x,y);
         break;
 
       case '-':
-        console.log("subtracting");
         return subtract(x,y);
         break;
 
       case '*':
-        console.log("multiply");
         return multiply(x,y);
         break;
 
       case '/':
-        console.log("divide");
-        return divide(x,y);
-        break;       
+        return divide(x,y);    
     }
   }
