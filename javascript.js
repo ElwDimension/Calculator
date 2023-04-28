@@ -1,34 +1,40 @@
-let firstNum, operator, secondNum, result;
+let firstNum, secondNum, result, num;
+let operator='';
 let numbers=['',''];
 let i=0;
 
 const displayBox=document.querySelector('#display');
+const displayResult=document.querySelector('#displayResult');
 
 const numBtns=document.querySelectorAll('.num');
 numBtns.forEach((numBtn) => {
-  numBtn.addEventListener('click',function(){ numbers[i]+=numBtn.textContent;});
+  numBtn.addEventListener('click',function(){ 
+    num=Number(numBtn.textContent);
+    numbers[i]=numbers[i].concat(num); 
+    updateDisplay();
+  });
 });
 
 const addBtn=document.querySelector('#add');
-addBtn.addEventListener('click',function(){ operator="+"; i=1; });
+addBtn.addEventListener('click',function(){ operator="+"; i=1; updateDisplay();});
 
 const subBtn=document.querySelector('#subtract');
-subBtn.addEventListener('click',function(){ operator="-"; i=1;});
+subBtn.addEventListener('click',function(){ operator="-"; i=1; updateDisplay();});
 
 const multiBtn=document.querySelector('#multiply');
-multiBtn.addEventListener('click',function(){ operator="*"; i=1; });
+multiBtn.addEventListener('click',function(){ operator="*"; i=1; updateDisplay();});
 
 const divBtn=document.querySelector('#divide');
-divBtn.addEventListener('click',function(){ operator="/"; i=1; });
+divBtn.addEventListener('click',function(){ operator="/"; i=1; updateDisplay();});
 
 const equalBtn=document.querySelector('#equals');
 equalBtn.addEventListener('click',function(){ 
   firstNum = Number(numbers[0]);
   secondNum = Number(numbers[1]);
   result = operate(firstNum,operator,secondNum);
-  displayBox.textContent=result;
-  i=0;
-  firstNum='';secondNum='';
+  updateDisplay;
+  displayResult.textContent=result;
+  numbers[0]=result ; numbers[1]=''; operator='';
 });
 
 
@@ -72,4 +78,11 @@ const add = function(x,y) {
       case '/':
         return divide(x,y);    
     }
+  }
+
+  const updateDisplay=function(){
+    displayResult.textContent='';
+    if(i===0){displayBox.textContent=Number(numbers[0])+`${operator}`;}
+    else{displayBox.textContent=`${numbers[0]}${operator}${numbers[1]}`;}
+    
   }
