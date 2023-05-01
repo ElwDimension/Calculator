@@ -6,11 +6,20 @@ let i=0;
 const displayBox=document.querySelector('#display');
 const displayResult=document.querySelector('#displayResult');
 
+const decBtn=document.querySelector('#decimal');
+decBtn.addEventListener('click',function(){ 
+  if(operator===''){numbers[i]+=''; updateDisplay();}
+  else if(numbers[i]===''){numbers[i]+='0.'; updateDisplay();} 
+  else if(!numbers[i].includes('.')){numbers[i]+='.'; updateDisplay();}; 
+});
+
 const numBtns=document.querySelectorAll('.num');
 numBtns.forEach((numBtn) => {
   numBtn.addEventListener('click',function(){ 
     num=Number(numBtn.textContent);
     numbers[i]=numbers[i].concat(num); 
+    //if(equalBtn.disabled){equalBtn.disabled=false;}
+    if(decBtn.disabled){decBtn.disabled=false;}
     updateDisplay();
   });
 });
@@ -29,12 +38,14 @@ divBtn.addEventListener('click',function(){ operator="/"; i=1; updateDisplay();}
 
 const equalBtn=document.querySelector('#equals');
 equalBtn.addEventListener('click',function(){ 
-  firstNum = Number(numbers[0]);
+  if(numbers[1]===''){displayResult.textContent=numbers[0];}
+  else{firstNum = Number(numbers[0]);
   secondNum = Number(numbers[1]);
   result = operate(firstNum,operator,secondNum);
   updateDisplay;
   displayResult.textContent=result;
   numbers[0]=result ; numbers[1]=''; operator='';
+  }
 });
 
 
@@ -82,7 +93,7 @@ const add = function(x,y) {
 
   const updateDisplay=function(){
     displayResult.textContent='';
-    if(i===0){displayBox.textContent=Number(numbers[0])+`${operator}`;}
+    if(i===0){displayBox.textContent=`${numbers[0]}`+`${operator}`;}
     else{displayBox.textContent=`${numbers[0]}${operator}${numbers[1]}`;}
     
   }
