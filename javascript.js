@@ -1,4 +1,4 @@
-let firstNum, secondNum, result, num;
+let firstNum, secondNum, result, num, justEqualed;
 let operator='';
 let numbers=['',''];
 let i=0;
@@ -10,8 +10,9 @@ const numBtns=document.querySelectorAll('.num');
 numBtns.forEach((numBtn) => {
   numBtn.addEventListener('click',function(){ 
     num=Number(numBtn.textContent);
-    numbers[i]=numbers[i].concat(num); 
-    updateDisplay();
+    if(justEqualed==true && i==1 && operator==''){i=0; numbers[0]=`${num}`; justEqualed=false; updateDisplay();}
+      
+    else{ numbers[i]=numbers[i].concat(num); updateDisplay(); }
   });
 });
 
@@ -41,7 +42,8 @@ divBtn.addEventListener('click',function(){
 
 const decBtn=document.querySelector('#decimal');
 decBtn.addEventListener('click',function(){ 
-  if((operator=='' && i!=0) || numbers[i].includes('.')){numbers[i]+=''; updateDisplay();}
+  if(justEqualed==true && operator==''){i=0; numbers[0]='0.'; justEqualed=false; updateDisplay();}
+  else if((operator=='' && i!=0) || numbers[i].includes('.')){numbers[i]+=''; updateDisplay();}
   else if(numbers[i]==''){numbers[i]+='0.'; updateDisplay();}
   else{numbers[i]+='.'; updateDisplay();}
 
@@ -50,7 +52,7 @@ decBtn.addEventListener('click',function(){
 
 const equalBtn=document.querySelector('#equals');
 equalBtn.addEventListener('click',function(){ 
-  if(numbers[1]==''){displayResult.textContent=numbers[0]; operator='';}
+  if(numbers[1]=='' || operator==''){displayResult.textContent=numbers[0]; operator='';}
   else{ equals();} });
 
 const clearBtn=document.querySelector('#clear');
@@ -112,5 +114,5 @@ const divide = function(x,y){
     result = operate(firstNum,operator,secondNum);
     updateDisplay;
     displayResult.textContent=result;
-    numbers[0]=result ; numbers[1]=''; operator='';
+    numbers[0]=result ; numbers[1]=''; operator=''; justEqualed=true;
   }
