@@ -50,8 +50,8 @@ decBtn.addEventListener('click',function(){
 
 const equalBtn=document.querySelector('#equals');
 equalBtn.addEventListener('click',function(){ 
-  if(numbers[1]===''){displayResult.textContent=numbers[0];}
-  else{ equals()} });
+  if(numbers[1]==''){displayResult.textContent=numbers[0]; operator='';}
+  else{ equals();} });
 
 const clearBtn=document.querySelector('#clear');
 clearBtn.addEventListener('click',function(){ numbers[0]=''; numbers[1]=''; operator=''; i=0; updateDisplay();});
