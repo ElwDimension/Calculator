@@ -41,9 +41,11 @@ divBtn.addEventListener('click',function(){
 
 const decBtn=document.querySelector('#decimal');
 decBtn.addEventListener('click',function(){ 
-  if(operator===''){numbers[i]+=''; updateDisplay();}
-  else if(numbers[i]===''){numbers[i]+='0.'; updateDisplay();} 
-  else if(!numbers[i].includes('.')){numbers[i]+='.'; updateDisplay();}; 
+  if((operator=='' && i!=0) || numbers[i].includes('.')){numbers[i]+=''; updateDisplay();}
+  else if(numbers[i]==''){numbers[i]+='0.'; updateDisplay();}
+  else{numbers[i]+='.'; updateDisplay();}
+
+
 });
 
 const equalBtn=document.querySelector('#equals');
@@ -61,22 +63,22 @@ const add = function(x,y) {
     return x+y;	
   };
   
-  const subtract = function(x,y) {
-      return x-y;
-  };
+const subtract = function(x,y) {
+    return x-y;
+};
 
-  const multiply = function(x,y) {
-    return x*y;
-  };
+const multiply = function(x,y) {
+  return x*y;
+};
 
-  const divide = function(x,y){
-    if(y===0){
-        return "You can't do that!";
-    }
-    else{
-        return x/y;
-    }
+const divide = function(x,y){
+  if(y===0){
+    return "You can't do that!";
   }
+  else{
+    return x/y;
+  }
+}
 
   const operate=function(x,operator,y){
     switch(operator){
