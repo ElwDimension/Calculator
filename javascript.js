@@ -10,8 +10,7 @@ const numBtns=document.querySelectorAll('.num');
 numBtns.forEach((numBtn) => {
   numBtn.addEventListener('click',function(){ 
     num=Number(numBtn.textContent);
-    if(justEqualed==true && i==1 && operator==''){i=0; numbers[0]=`${num}`; justEqualed=false; updateDisplay();}
-      
+    if(justEqualed==true && i==1 && operator==''){i=0; numbers[0]=`${num}`; justEqualed=false; updateDisplay();}   
     else{ numbers[i]=numbers[i].concat(num); updateDisplay(); }
   });
 });
