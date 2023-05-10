@@ -113,5 +113,7 @@ const divide = function(x,y){
     result = operate(firstNum,operator,secondNum);
     updateDisplay;
     displayResult.textContent=result;
-    numbers[0]=result ; numbers[1]=''; operator=''; justEqualed=true;
+    if(result=="You can't do that!"){numbers[0]=''; i=0;}
+    else{numbers[0]=result;}
+    numbers[1]=''; operator=''; justEqualed=true;
   }
