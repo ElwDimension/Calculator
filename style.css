@@ -28,7 +28,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-   
+    margin-bottom: 20px;
     border: 2px solid #2f302e;
     
 }
@@ -48,15 +48,30 @@ body{
 
 #buttons{
     display:flex;
+    flex-grow:1;
 }
 
 #numbers{
     display:flex;
     flex-flow:column;
+    flex-grow:1;
 }
 
 #operators{
     display:flex;
     flex-flow:column;
+    flex-grow:.1;
+    justify-content:space-around;
+}
+
+button{
+    height:100%;
+    width:100%;
+}
+
+.row{
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-around;
 }
 
